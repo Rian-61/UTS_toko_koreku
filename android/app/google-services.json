@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "382633637335",
+    "project_id": "toko-koreku",
+    "storage_bucket": "toko-koreku.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382633637335:android:910163cff1ba046fcf8792",
+        "android_client_info": {
+          "package_name": "com.example.toko_koreku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382633637335-jb9hvsba4heprf6pm1i27mtqn3vbbagc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxFDPJhXebxoL4jcGzuGkcuD4v8ZgirFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382633637335-jb9hvsba4heprf6pm1i27mtqn3vbbagc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "382633637335-j3k7opk2v4hpk8tj9tag6cp4ir5qjuv1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tokoKoreku"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
