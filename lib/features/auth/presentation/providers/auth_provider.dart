@@ -10,7 +10,7 @@ enum AuthStatus { initial, loading, authenticated, unauthenticated, emailNotVeri
 class AuthProvider extends ChangeNotifier {
   final _repo = AuthRepositoryImpl();
   final _firebaseAuth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  final _googleSignIn = GoogleSignIn();
  
   AuthStatus _status = AuthStatus.initial;
   String? _errorMessage;
@@ -62,7 +62,7 @@ final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
     _setStatus(AuthStatus.loading);
     try {
       final googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) { _setStatus(AuthStatus.unauthenticated); return; }
+      if (googleUser == null) { _setStatus(AuthStatus.initial); return; }
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -79,7 +79,11 @@ final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
  
   // FORGOT PASSWORD
   Future<void> forgotPassword(String email) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      _setError('Gagal mengirim email reset password.');
+    }
   }
  
   // SIGN OUT
@@ -95,6 +99,10 @@ final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
     await user.reload();
     if (!user.emailVerified) { _setStatus(AuthStatus.emailNotVerified); return; }
     final token = await user.getIdToken(true);
+    if (token == null) {
+        _setError('Gagal mendapatkan token.');
+        return;
+    }
     final authData = await _repo.verifyFirebaseToken(token!);
     _user = authData.user;
     _setStatus(AuthStatus.authenticated);

@@ -10,8 +10,8 @@ import 'auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final _dio = DioClient.instance;
   final _firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
-
+  final _googleSignIn = GoogleSignIn();
+ 
   @override
   Future<AuthResponseModel> verifyFirebaseToken(String firebaseToken) async {
     final response = await _dio.post(
