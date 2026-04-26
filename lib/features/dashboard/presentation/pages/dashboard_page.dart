@@ -108,23 +108,73 @@ class _DashboardPageState extends State<DashboardPage> {
                           final fmt = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
                           return Card(
                             elevation: 2,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                                child: Image.network(p.imageUrl, height: 120, width: double.infinity, fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => Container(height: 120, color: Colors.grey[200],
-                                    child: const Icon(Icons.image_not_supported, size: 40, color: Colors.grey)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // GAMBAR
+                                Expanded(
+                                  flex: 3,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(12)
+                                    ),
+                                    child: Image.network(
+                                      p.imageUrl,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Container(
+                                        color: Colors.grey[200],
+                                        child: const Icon(
+                                          Icons.image_not_supported,
+                                          size: 40,
+                                          color: Colors.grey
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Padding(padding: const EdgeInsets.all(8), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(p.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13), maxLines: 2, overflow: TextOverflow.ellipsis),
-                                const SizedBox(height: 4),
-                                Text(fmt.format(p.price), style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600)),
-                                const SizedBox(height: 2),
-                                Text('Stok: ${p.stock}', style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
-                              ])),
-                            ]),
+                                // TEKS
+                                Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          p.name,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(
+                                          fmt.format(p.price),
+                                          style: const TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12
+                                          ),
+                                        ),
+                                        Text(
+                                          'Stok: ${p.stock}',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: AppColors.textSecondary
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),

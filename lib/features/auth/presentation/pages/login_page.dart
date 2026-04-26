@@ -65,7 +65,12 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const AuthHeader(title: 'Selamat Datang', subtitle: 'Masuk ke akun kamu'),
+                    const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: AuthHeader(title: 'Selamat Datang', subtitle: 'Masuk ke akun kamu', showLogo: true),
+                      ),
+                    ),
                       CustomTextField(label: 'Email', controller: _emailCtrl, prefixIcon: Icons.email_outlined,
                         keyboardType: TextInputType.emailAddress,
                         validator: (v) => !EmailValidator.validate(v!) ? 'Email tidak valid' : null),

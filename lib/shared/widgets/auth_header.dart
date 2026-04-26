@@ -25,31 +25,14 @@ class AuthHeader extends StatelessWidget {
             width: 110,
             height: 110,
             decoration: BoxDecoration(
-              shape: BoxShape.circle, 
-              color: Colors.white,
-              border: Border.all(
-                color: AppColors.primary,  
-                width: 3,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha:0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(20), // bukan lingkaran
             ),
-            child: ClipOval(  
+            child: Padding(
+              padding: const EdgeInsets.all(10),
               child: Image.asset(
                 'assets/icons/logo_toko.png',
-                width: 110,
-                height: 110,
-                fit: BoxFit.cover,  
-                errorBuilder: (_, __, ___) => const Icon(
-                  Icons.store,
-                  size: 60,
-                  color: AppColors.primary,
-                ),
+                fit: BoxFit.contain,
               ),
             ),
           ),
